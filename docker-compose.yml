@@ -1,0 +1,31 @@
+version: '3'
+
+services:
+  app:
+    container_name: app
+    build: .
+    ports: 
+      - 50501:50501 
+    environment: 
+      - JWT_SECRET=secret
+      - DB_HOST=db
+      - DB_PORT=3306
+      - DB_USERNAME=root
+      - DB_PASSWORD=root
+      - DB_DATABASE=edufund
+      - DB_OPTIONS=charset=utf8mb4&parseTime=True&loc=Local
+    depends_on:
+      - db
+  
+  db:
+    image: mysql:8.0.30
+    container_name: db
+    environment: 
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=edufund
+    command: --default-authentication-plugin=mysql_native_password
+    networks:
+      - default
+
+networks:
+  default:
