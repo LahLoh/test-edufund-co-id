@@ -195,6 +195,8 @@ curl http://localhost:50501/v1/register
 ## How to Run with Docker Compose
 ```sh
 docker compose up
+
+# don't forget clean this image, if u want to re run, because it nge-cache
 ```
 
 ## How to Run without Docker Compose
